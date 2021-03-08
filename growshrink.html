@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #container {
+        width: 0px;
+        height: 0px;
+        position: relative;
+        background: yellow;
+    }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <title>Html element grow and shrink</title>
+</head>
+
+<body>
+
+    <h1>Grow and shrink of Square </h1>
+    <button onclick="Grow()">grow</button>
+    <button onclick="shrink()">shrink</button>
+    <button onclick="pause()">pause</button>
+    <button onclick="intial()">intial</button>
+    <div id="container"></div>
+    <script>
+        var containerSize = 0;
+        var size = 0;
+        var pauseFlag = 1;
+        var timer;
+        var grow_ShrinkFlag = 0;
+        var element = document.getElementById("container");
+
+        function containerSizeModify() {
+            if (containerSize < 0) {
+                size = 0;
+            }
+            containerSize = containerSize + size;
+            element.style.width = containerSize + "px";
+            element.style.height = containerSize + "px";
+            console.log(si);
+        }
+        var timer = setInterval(containerSizeModify, 10);
+
+        function Grow() {
+            size = 1;
+            grow_ShrinkFlag = 0;
+        }
+
+        function shrink() {
+            size = -1;
+            grow_ShrinkFlag = 1;
+        }
+
+        function pause() {
+            if (pauseFlag) {
+                size = 0
+                pauseFlag = 0
+            } else {
+                pauseFlag = 1
+                if (grow_ShrinkFlag) {
+                    size = -1;
+                } else {
+                    size = 1;
+                }
+
+            }
+
+        }
+
+        function intial() {
+            containerSize = 0
+        }
+    </script>
+</body>
+
+</html>

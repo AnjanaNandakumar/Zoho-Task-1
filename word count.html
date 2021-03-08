@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Find words with charecctor count more than limit</title>
+</head>
+
+<body>
+
+    <p id="demo"></p>
+    <input type="text" placeholder="Type the text" id="inputText">
+    <input type="text" placeholder="Type the limit" id="limit">
+    <button type="button" onclick="getInputValue();">Get Value</button>
+
+    <script>
+        function getInputValue() {
+
+
+            var str = document.getElementById("inputText").value;
+            var leng = str.length;
+            var limit = document.getElementById("limit").value;
+            var ss = document.getElementById("demo");
+            var k = findcount(str, limit);
+
+            for (var key in k) {
+                ss.innerHTML = ss.innerHTML + "<br />" + "length is :" + key + " : " + k[key];
+            }
+        }
+
+        function findcount(str1, limit1) {
+            var dict = {};
+            var s = str1.split(" ");
+            var len = s.length;
+            var i = 0;
+            while (i < len) {
+                var wordlen = s[i].length;
+                if (wordlen > limit1) {
+                    if (wordlen in dict) {
+                        dict[wordlen] = dict[wordlen] + " , " + s[i];
+                    } else {
+                        dict[wordlen] = s[i];
+                    }
+
+                }
+                i = i + 1;
+            }
+            return dict;
+        }
+    </script>
+
+</body>
+
+</html>
